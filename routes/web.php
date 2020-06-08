@@ -24,3 +24,13 @@ Route::get('/hello', 'HelloController@index');
 Route::get('/books', 'BookController@index');
 
 Route::get('/books/{book_id}', 'BookController@show')->where('book_id', '[0-9]+');
+
+
+
+
+
+
+
+
+
+Route::get('/books/{book_id}/reviews/{review_id}', 'ReviewController@show');

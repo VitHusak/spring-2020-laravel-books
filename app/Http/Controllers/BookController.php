@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Book;
 
 class BookController extends Controller
@@ -13,7 +11,11 @@ class BookController extends Controller
 
         $books = Book::all();
 
-        return $books;
+//        return view('books.index')->with('books', $books);
+
+//        return view('books.index', ['books' => $books]);
+
+        return view('books.index', compact('books'));
     }
 
     public function show($book_id){
@@ -37,6 +39,6 @@ class BookController extends Controller
 
         $book = Book::findOrFail($book_id);
 
-        return $book;
+        return view('books.show', compact('book'));
     }
 }
