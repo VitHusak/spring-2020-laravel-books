@@ -19,6 +19,8 @@ Route::get('/', function () {
 
 Route::get('/api/books', 'APIBookController@index');
 
-
-
 Route::get('/hello', 'HelloController@index');
+
+Route::get('/books', 'BookController@index');
+
+Route::get('/books/{book_id}', 'BookController@show')->where('book_id', '[0-9]+');

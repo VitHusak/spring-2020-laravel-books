@@ -5,8 +5,9 @@
 
 <p>{{ $comment }}</p>
 
-<!-- This is HTML comment -->
-{{-- This is BLADE comment --}}
+<!-- This is HTML comment - this one will be visible in the source code of HTML page -->
+
+{{-- This is BLADE comment - this one will not be visible anywhere in browser --}}
 
 <p>{{ $description }}</p>
 <p>{!! $description !!}</p>
