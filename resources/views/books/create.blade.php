@@ -1,4 +1,5 @@
 <form method="post" action="/books">
+    @csrf
     <div>
         <label>Title</label>
         <input type="text" name="title">
