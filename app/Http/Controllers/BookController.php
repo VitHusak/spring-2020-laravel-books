@@ -55,8 +55,9 @@ class BookController extends Controller
         $book->authors = $request->input('authors');
         $book->image = $request->input('image');
 
-
         $book->save();
+
+        return redirect('/books/' . $book->id);
     }
 
 
