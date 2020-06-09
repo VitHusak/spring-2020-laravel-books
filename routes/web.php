@@ -32,8 +32,4 @@ Route::get('/publishers/{publisher_id}', 'PublisherController@show')->where('pub
 
 
 
-
-
-
-
 Route::get('/books/{book_id}/reviews/{review_id}', 'ReviewController@show');

@@ -1,0 +1,536 @@
+slavo$ php artisan tinker
+
+Psy Shell v0.10.4 (PHP 7.3.9 — cli) by Justin Hileman
+>>> $books = App\Book::all()
+=> Illuminate\Database\Eloquent\Collection {#3049
+     all: [
+       App\Book {#3050
+         id: 1,
+         title: "The Hunger Games",
+         authors: "Suzanne Collins",
+         image: "https://images.gr-assets.com/books/1447303603m/2767052.jpg",
+         created_at: null,
+         updated_at: null,
+         publisher_id: 1,
+       },
+       App\Book {#3051
+         id: 2,
+         title: "Harry Potter and the Philosopher's Stone",
+         authors: "J.K. Rowling, Mary GrandPré",
+         image: "https://images.gr-assets.com/books/1474154022m/3.jpg",
+         created_at: null,
+         updated_at: null,
+         publisher_id: 2,
+       },
+       App\Book {#3052
+         id: 3,
+         title: "Twilight",
+         authors: "Stephenie Meyer",
+         image: "https://images.gr-assets.com/books/1361039443m/41865.jpg",
+         created_at: null,
+         updated_at: null,
+         publisher_id: 3,
+       },
+       App\Book {#3053
+         id: 4,
+         title: "To Kill a Mockingbird",
+         authors: "Harper Lee",
+         image: "https://images.gr-assets.com/books/1361975680m/2657.jpg",
+         created_at: null,
+         updated_at: null,
+         publisher_id: 4,
+       },
+       App\Book {#3054
+         id: 5,
+         title: "The Great Gatsby",
+         authors: "F. Scott Fitzgerald",
+         image: "https://images.gr-assets.com/books/1490528560m/4671.jpg",
+         created_at: null,
+         updated_at: null,
+         publisher_id: null,
+       },
+       App\Book {#3055
+         id: 6,
+         title: "The Fault in Our Stars",
+         authors: "John Green",
+         image: "https://images.gr-assets.com/books/1360206420m/11870085.jpg",
+         created_at: null,
+         updated_at: null,
+         publisher_id: null,
+       },
+       App\Book {#3056
+         id: 7,
+         title: "The Hobbit or There and Back Again",
+         authors: "J.R.R. Tolkien",
+         image: "https://images.gr-assets.com/books/1372847500m/5907.jpg",
+         created_at: null,
+         updated_at: null,
+         publisher_id: null,
+       },
+       App\Book {#3057
+         id: 8,
+         title: "The Catcher in the Rye",
+         authors: "J.D. Salinger",
+         image: "https://images.gr-assets.com/books/1398034300m/5107.jpg",
+         created_at: null,
+         updated_at: null,
+         publisher_id: null,
+       },
+       App\Book {#3058
+         id: 9,
+         title: "Angels & Demons ",
+         authors: "Dan Brown",
+         image: "https://images.gr-assets.com/books/1303390735m/960.jpg",
+         created_at: null,
+         updated_at: null,
+         publisher_id: null,
+       },
+     ],
+   }
+>>>
+>>> $book = App\Book::find(4);
+=> App\Book {#3036
+     id: 4,
+     title: "To Kill a Mockingbird",
+     authors: "Harper Lee",
+     image: "https://images.gr-assets.com/books/1361975680m/2657.jpg",
+     created_at: null,
+     updated_at: null,
+     publisher_id: 4,
+   }
+>>>
+>>> $book = App\Book::find(12);
+=> null
+>>> $book = App\Book::findOrFail(12);
+Illuminate/Database/Eloquent/ModelNotFoundException with message 'No query results for model [App/Book] 12'
+>>> $book = App\Book::find("To Kill a Mockingbird")
+=> null
+>>>
+>>> $book = App\Book::where('authors', "Harper Lee")
+=> Illuminate\Database\Eloquent\Builder {#3059}
+>>>
+>>> $a = "Harper Lee";
+=> "Harper Lee"
+>>> $book = App\Book::where('authors', $a);
+=> Illuminate\Database\Eloquent\Builder {#3037}
+>>>
+>>> $book = App\Book::where('authors, $a)->where('id', 5)
+PHP Parse error: Syntax error, unexpected T_STRING, expecting ')' on line 1
+>>> $book = App\Book::where('authors', $a)->where('id', 5)
+=> Illuminate\Database\Eloquent\Builder {#3029}
+>>> $book = App\Book::where('authors', $a)->where('id', 5)->get()
+=> Illuminate\Database\Eloquent\Collection {#3033
+     all: [],
+   }
+>>> $book = App\Book::where('authors', $a)->where('id', 4)->get()
+=> Illuminate\Database\Eloquent\Collection {#3027
+     all: [
+       App\Book {#3059
+         id: 4,
+         title: "To Kill a Mockingbird",
+         authors: "Harper Lee",
+         image: "https://images.gr-assets.com/books/1361975680m/2657.jpg",
+         created_at: null,
+         updated_at: null,
+         publisher_id: 4,
+       },
+     ],
+   }
+>>> $book = App\Book::where('authors', $a)->where('id', 4)->first()
+=> App\Book {#3063
+     id: 4,
+     title: "To Kill a Mockingbird",
+     authors: "Harper Lee",
+     image: "https://images.gr-assets.com/books/1361975680m/2657.jpg",
+     created_at: null,
+     updated_at: null,
+     publisher_id: 4,
+   }
+>>>
+>>> $book = App\Book::where('authors', $a)->where('id', 4)->get()
+=> Illuminate\Database\Eloquent\Collection {#3060
+     all: [
+       App\Book {#3069
+         id: 4,
+         title: "To Kill a Mockingbird",
+         authors: "Harper Lee",
+         image: "https://images.gr-assets.com/books/1361975680m/2657.jpg",
+         created_at: null,
+         updated_at: null,
+         publisher_id: 4,
+       },
+     ],
+   }
+>>>
+>>> $book
+=> Illuminate\Database\Eloquent\Collection {#3060
+     all: [
+       App\Book {#3069
+         id: 4,
+         title: "To Kill a Mockingbird",
+         authors: "Harper Lee",
+         image: "https://images.gr-assets.com/books/1361975680m/2657.jpg",
+         created_at: null,
+         updated_at: null,
+         publisher_id: 4,
+       },
+     ],
+   }
+>>>
+>>> $book->title
+Exception with message 'Property [title] does not exist on this collection instance.'
+>>> $book[0]->title
+=> "To Kill a Mockingbird"
+>>> $book[0]
+=> App\Book {#3069
+     id: 4,
+     title: "To Kill a Mockingbird",
+     authors: "Harper Lee",
+     image: "https://images.gr-assets.com/books/1361975680m/2657.jpg",
+     created_at: null,
+     updated_at: null,
+     publisher_id: 4,
+   }
+>>> $book[0]->title
+=> "To Kill a Mockingbird"
+>>>
+>>> $book = App\Book::where('id', 4)->first()
+=> App\Book {#3065
+     id: 4,
+     title: "To Kill a Mockingbird",
+     authors: "Harper Lee",
+     image: "https://images.gr-assets.com/books/1361975680m/2657.jpg",
+     created_at: null,
+     updated_at: null,
+     publisher_id: 4,
+   }
+>>> $book->title
+=> "To Kill a Mockingbird"
+>>>
+>>> $book = App\Book::where('id', '>', 4)->first()
+=> App\Book {#3040
+     id: 5,
+     title: "The Great Gatsby",
+     authors: "F. Scott Fitzgerald",
+     image: "https://images.gr-assets.com/books/1490528560m/4671.jpg",
+     created_at: null,
+     updated_at: null,
+     publisher_id: null,
+   }
+>>>
+>>> $book = App\Book::where('id', '>', 4)->get()
+=> Illuminate\Database\Eloquent\Collection {#3034
+     all: [
+       App\Book {#3072
+         id: 5,
+         title: "The Great Gatsby",
+         authors: "F. Scott Fitzgerald",
+         image: "https://images.gr-assets.com/books/1490528560m/4671.jpg",
+         created_at: null,
+         updated_at: null,
+         publisher_id: null,
+       },
+       App\Book {#3068
+         id: 6,
+         title: "The Fault in Our Stars",
+         authors: "John Green",
+         image: "https://images.gr-assets.com/books/1360206420m/11870085.jpg",
+         created_at: null,
+         updated_at: null,
+         publisher_id: null,
+       },
+       App\Book {#3066
+         id: 7,
+         title: "The Hobbit or There and Back Again",
+         authors: "J.R.R. Tolkien",
+         image: "https://images.gr-assets.com/books/1372847500m/5907.jpg",
+         created_at: null,
+         updated_at: null,
+         publisher_id: null,
+       },
+       App\Book {#3059
+         id: 8,
+         title: "The Catcher in the Rye",
+         authors: "J.D. Salinger",
+         image: "https://images.gr-assets.com/books/1398034300m/5107.jpg",
+         created_at: null,
+         updated_at: null,
+         publisher_id: null,
+       },
+       App\Book {#3073
+         id: 9,
+         title: "Angels & Demons ",
+         authors: "Dan Brown",
+         image: "https://images.gr-assets.com/books/1303390735m/960.jpg",
+         created_at: null,
+         updated_at: null,
+         publisher_id: null,
+       },
+     ],
+   }
+>>>
+>>> $book = App\Book::where('id', '>', 4)->get()
+=> Illuminate\Database\Eloquent\Collection {#3065
+     all: [
+       App\Book {#3074
+         id: 5,
+         title: "The Great Gatsby",
+         authors: "F. Scott Fitzgerald",
+         image: "https://images.gr-assets.com/books/1490528560m/4671.jpg",
+         created_at: null,
+         updated_at: null,
+         publisher_id: null,
+       },
+       App\Book {#3061
+         id: 6,
+         title: "The Fault in Our Stars",
+         authors: "John Green",
+         image: "https://images.gr-assets.com/books/1360206420m/11870085.jpg",
+         created_at: null,
+         updated_at: null,
+         publisher_id: null,
+       },
+       App\Book {#3077
+         id: 7,
+         title: "The Hobbit or There and Back Again",
+         authors: "J.R.R. Tolkien",
+         image: "https://images.gr-assets.com/books/1372847500m/5907.jpg",
+         created_at: null,
+         updated_at: null,
+         publisher_id: null,
+       },
+       App\Book {#3078
+         id: 8,
+         title: "The Catcher in the Rye",
+         authors: "J.D. Salinger",
+         image: "https://images.gr-assets.com/books/1398034300m/5107.jpg",
+         created_at: null,
+         updated_at: null,
+         publisher_id: null,
+       },
+       App\Book {#3079
+         id: 9,
+         title: "Angels & Demons ",
+         authors: "Dan Brown",
+         image: "https://images.gr-assets.com/books/1303390735m/960.jpg",
+         created_at: null,
+         updated_at: null,
+         publisher_id: null,
+       },
+     ],
+   }
+>>>
+>>> $book->title
+Exception with message 'Property [title] does not exist on this collection instance.'
+>>>
+>>> $b = App\Book::where('id', '>', 7)->orderBy('id', 'desc')
+=> Illuminate\Database\Eloquent\Builder {#3076}
+>>> $b = App\Book::where('id', '>', 7)->orderBy('id', 'desc')->get()
+=> Illuminate\Database\Eloquent\Collection {#3070
+     all: [
+       App\Book {#3044
+         id: 9,
+         title: "Angels & Demons ",
+         authors: "Dan Brown",
+         image: "https://images.gr-assets.com/books/1303390735m/960.jpg",
+         created_at: null,
+         updated_at: null,
+         publisher_id: null,
+       },
+       App\Book {#3046
+         id: 8,
+         title: "The Catcher in the Rye",
+         authors: "J.D. Salinger",
+         image: "https://images.gr-assets.com/books/1398034300m/5107.jpg",
+         created_at: null,
+         updated_at: null,
+         publisher_id: null,
+       },
+     ],
+   }
+>>> $b = App\Book::where('id', '>', 7)->orderBy('id', 'asc')->get()
+=> Illuminate\Database\Eloquent\Collection {#3072
+     all: [
+       App\Book {#3038
+         id: 8,
+         title: "The Catcher in the Rye",
+         authors: "J.D. Salinger",
+         image: "https://images.gr-assets.com/books/1398034300m/5107.jpg",
+         created_at: null,
+         updated_at: null,
+         publisher_id: null,
+       },
+       App\Book {#3073
+         id: 9,
+         title: "Angels & Demons ",
+         authors: "Dan Brown",
+         image: "https://images.gr-assets.com/books/1303390735m/960.jpg",
+         created_at: null,
+         updated_at: null,
+         publisher_id: null,
+       },
+     ],
+   }
+>>>
+>>> $a = 5;
+=> 5
+>>>
+>>> $b = App\Book::find(2);
+=> App\Book {#3066
+     id: 2,
+     title: "Harry Potter and the Philosopher's Stone",
+     authors: "J.K. Rowling, Mary GrandPré",
+     image: "https://images.gr-assets.com/books/1474154022m/3.jpg",
+     created_at: null,
+     updated_at: null,
+     publisher_id: 2,
+   }
+>>>
+>>> $b->authors = 'J.K. Rowling';
+=> "J.K. Rowling"
+>>>
+>>> $b
+=> App\Book {#3066
+     id: 2,
+     title: "Harry Potter and the Philosopher's Stone",
+     authors: "J.K. Rowling",
+     image: "https://images.gr-assets.com/books/1474154022m/3.jpg",
+     created_at: null,
+     updated_at: null,
+     publisher_id: 2,
+   }
+>>> $b->isDirty()
+=> true
+>>>
+>>> $b->save()
+=> true
+>>>
+>>> $b->isDirty()
+=> false
+>>>
+>>> $b = App\Book::find(1)
+=> App\Book {#3073
+     id: 1,
+     title: "The Hunger Games",
+     authors: "Suzanne Collins",
+     image: "https://images.gr-assets.com/books/1447303603m/2767052.jpg",
+     created_at: null,
+     updated_at: null,
+     publisher_id: 1,
+   }
+>>> $b->isDirty()
+=> false
+>>> $b->publisher_id = 10;
+=> 10
+>>> $b->isDirty()
+=> true
+>>>
+>>> $newBook = new App\Book;
+=> App\Book {#3038}
+>>> $newBook
+=> App\Book {#3038}
+>>> $newPub = new App\Publisher;
+=> App\Publisher {#3034}
+>>>
+>>> $newPub
+=> App\Publisher {#3034}
+>>> $newPub->title = 'Super Cool Publisher'
+=> "Super Cool Publisher"
+>>> $newPub
+=> App\Publisher {#3034
+     title: "Super Cool Publisher",
+   }
+>>> $newPub->save()
+=> true
+>>> $newPub
+=> App\Publisher {#3034
+     title: "Super Cool Publisher",
+     updated_at: "2020-06-09 12:02:07",
+     created_at: "2020-06-09 12:02:07",
+     id: 5,
+   }
+>>>
+>>> $toDelete = App\Book::find(9)
+=> App\Book {#3086
+     id: 9,
+     title: "Angels & Demons ",
+     authors: "Dan Brown",
+     image: "https://images.gr-assets.com/books/1303390735m/960.jpg",
+     created_at: null,
+     updated_at: null,
+     publisher_id: null,
+   }
+>>> $toDelete = App\Book::find(8)
+=> App\Book {#3858
+     id: 8,
+     title: "The Catcher in the Rye",
+     authors: "J.D. Salinger",
+     image: "https://images.gr-assets.com/books/1398034300m/5107.jpg",
+     created_at: null,
+     updated_at: null,
+     publisher_id: null,
+   }
+>>> $toDelete = App\Book::find(7)
+=> App\Book {#3949
+     id: 7,
+     title: "The Hobbit or There and Back Again",
+     authors: "J.R.R. Tolkien",
+     image: "https://images.gr-assets.com/books/1372847500m/5907.jpg",
+     created_at: null,
+     updated_at: null,
+     publisher_id: null,
+   }
+>>>
+>>> $toDelete = App\Book::find(6)
+=> App\Book {#3792
+     id: 6,
+     title: "The Fault in Our Stars",
+     authors: "John Green",
+     image: "https://images.gr-assets.com/books/1360206420m/11870085.jpg",
+     created_at: null,
+     updated_at: null,
+     publisher_id: null,
+   }
+>>>
+>>> $toDelete
+=> App\Book {#3792
+     id: 6,
+     title: "The Fault in Our Stars",
+     authors: "John Green",
+     image: "https://images.gr-assets.com/books/1360206420m/11870085.jpg",
+     created_at: null,
+     updated_at: null,
+     publisher_id: null,
+   }
+>>>
+>>> $toDelete->delete()
+=> true
+>>>
+>>> $toDelete
+=> App\Book {#3792
+     id: 6,
+     title: "The Fault in Our Stars",
+     authors: "John Green",
+     image: "https://images.gr-assets.com/books/1360206420m/11870085.jpg",
+     created_at: null,
+     updated_at: null,
+     publisher_id: null,
+   }
+>>> $toDelete->isDirty()
+=> false
+>>>
+>>> $t = App\Book::find(3)
+=> App\Book {#4004
+     id: 3,
+     title: "Twilight",
+     authors: "Stephenie Meyer",
+     image: "https://images.gr-assets.com/books/1361039443m/41865.jpg",
+     created_at: null,
+     updated_at: null,
+     publisher_id: 3,
+   }
+>>>
+>>> $t->delete()
+=> true
+>>>
+>>> exit
