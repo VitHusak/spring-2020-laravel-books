@@ -26,6 +26,9 @@ Route::get('/books', 'BookController@index');
 Route::get('/books/{book_id}', 'BookController@show')->where('book_id', '[0-9]+');
 
 
+Route::get('/publishers', 'PublisherController@index');
+
+Route::get('/publishers/{publisher_id}', 'PublisherController@show')->where('publisher_id', '[0-9]+');
 
 
 

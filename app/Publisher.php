@@ -4,13 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Book extends Model
+class Publisher extends Model
 {
-    protected $table = 'books';
-    
-
-
-
-
-
+    //
 }
