@@ -60,6 +60,23 @@ class BookController extends Controller
         return redirect('/books/' . $book->id);
     }
 
+    public function edit($book_id)
+    {
+        $book = Book::findOrFail($book_id);
 
+        return view('books.edit', compact('book'));
+    }
 
+    public function update($book_id, Request $request){
+
+        $book = Book::findOrFail($book_id);
+
+        $book->title = $request->input('title');
+        $book->authors = $request->input('authors');
+        $book->image = $request->input('image');
+
+        $book->save();
+
+        return redirect('/books/' . $book->id);
+    }
 }
