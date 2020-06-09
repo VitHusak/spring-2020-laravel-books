@@ -41,4 +41,12 @@ class BookController extends Controller
 
         return view('books.show', compact('book'));
     }
+
+    public function create()
+    {
+        return view('books.create');
+    }
+
+
+
 }
