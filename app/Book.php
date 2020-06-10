@@ -12,4 +12,9 @@ class Book extends Model
     {
         return $this->belongsTo('App\Publisher', 'publisher_id');
     }
+
+    public function cartItems()
+    {
+        return $this->hasMany('App\CartItem');
+    }
 }
