@@ -4,7 +4,11 @@
     <div>
         <h2>{{ $b->title }}</h2>
         <p>Authors: {{ $b->authors }}</p>
-        <p>Publisher: XYZ</p>
+
+        @if($b->publisher)
+            <p>Publisher: {{ $b->publisher->title }}</p>
+        @endif
+
         <a href="books/{{ $b->id }}">Read more...</a>
     </div>
 @endforeach

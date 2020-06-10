@@ -10,6 +10,6 @@ class Book extends Model
 
     public function publisher()
     {
-        return $this->belongsTo('App\Publisher');
+        return $this->belongsTo('App\Publisher', 'publisher_id');
     }
 }
