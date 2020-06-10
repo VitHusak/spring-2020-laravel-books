@@ -5,9 +5,13 @@
         <h2>{{ $b->title }}</h2>
         <p>Authors: {{ $b->authors }}</p>
 
-        @if($b->publisher)
-            <p>Publisher: {{ $b->publisher->title }}</p>
-        @endif
+        <p>Publisher:
+            @if($b->publisher)
+                 {{ $b->publisher->title }}
+            @else
+                Uknown
+            @endif
+        </p>
 
         <a href="books/{{ $b->id }}">Read more...</a>
     </div>
