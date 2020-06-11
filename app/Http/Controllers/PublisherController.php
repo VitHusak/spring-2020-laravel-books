@@ -37,6 +37,11 @@ class PublisherController extends Controller
 
     public function store(Request $request)
     {
+        // validate the request
+        $this->validate($request, [
+            'title' => 'required'
+        ]);
+
         // prepare empty object
         $publisher = new Publisher;
 
@@ -62,6 +67,11 @@ class PublisherController extends Controller
 
     public function update(Request $request, $id)
     {
+        // validate the request
+        $this->validate($request, [
+            'title' => 'required'
+        ]);
+        
         // get the object to be updated from database
         $publisher = Publisher::findOrFail($id);
 
