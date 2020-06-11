@@ -9,6 +9,8 @@
     @foreach($publishers as $p)
         <div>
             <h2>{{ $p->title }}</h2>
+
+            <a href="{{ route('publishers.edit', [$p->id]) }}">Edit this publisher</a>
             
             @component('publishers.unordered-list', [
                 'what' => 'List of books of publisher '.$p->title
