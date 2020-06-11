@@ -1,16 +1,40 @@
-<h1>Publishers Index</h1>
+@extends('layouts.layout', [
+    'title' => 'List of publishers'
+])
 
-@foreach($publishers as $p)
-    <div>
-        <h2>{{ $p->title }}</h2>
-        <ul>
+@section('content')
 
-            @foreach($p->books as $b)
-                <li>{{ $b->title }}</li>
-            @endforeach
+    <h1>Publishers Index</h1>
 
-        </ul>
+    @foreach($publishers as $p)
+        <div>
+            <h2>{{ $p->title }}</h2>
+            
+            @component('publishers.unordered-list', [
+                'what' => 'List of books of publisher '.$p->title
+            ])
 
-        <a href="publishers/{{ $p->id }}">Read more...</a>
-    </div>
-@endforeach
+                <ul>
+
+                    @foreach($p->books as $b)
+                        <li>{{ $b->title }}</li>
+                    @endforeach
+
+                </ul>
+
+            @endcomponent
+
+            <a href="publishers/{{ $p->id }}">Read more...</a>
+        </div>
+    @endforeach
+
+
+    @component('publishers.unordered-list', [
+        'what' => 'whatever'
+    ])
+
+        ANYTHING ELSE, WRAPPED IN THE COMPONENT
+
+    @endcomponent
+
+@endsection

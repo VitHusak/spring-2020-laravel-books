@@ -24,7 +24,7 @@ Route::get('/hello', 'HelloController@index');
 
 
 
-Route::get('/books', 'BookController@index');
+Route::get('/books', 'BookController@index')->name('books.index');
 
 Route::get('/books/create', 'BookController@create');
 Route::post('/books', 'BookController@store');
@@ -43,9 +43,15 @@ Route::post('/books/{book_id}', 'BookController@update');
 //->where('book_id', '[0-9]+');
 
 
-Route::get('/publishers', 'PublisherController@index');
+Route::get('/publishers', 'PublisherController@index')->name('publishers.index');
 
 Route::get('/publishers/{publisher_id}', 'PublisherController@show')->where('publisher_id', '[0-9]+');
+
+Route::get( '/publishers/create',    'PublisherController@create') ->name('publishers.create');
+Route::post('/publishers',           'PublisherController@store')  ->name('publishers.store');
+Route::get( '/publishers/{id}/edit', 'PublisherController@edit')   ->name('publishers.edit');
+Route::put( '/publishers/{id}',      'PublisherController@update') ->name('publishers.update');
+
 
 
 
