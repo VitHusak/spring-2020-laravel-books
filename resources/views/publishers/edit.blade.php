@@ -36,7 +36,7 @@
 
         <label for="">
             Title:<br>
-            <input type="text" name="title" value="{{ $publisher->title }}">
+            <input type="text" name="title" value="{{ old('title', $publisher->title) }}">
         </label>
         <br>
         <br>
