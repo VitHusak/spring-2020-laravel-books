@@ -37,16 +37,44 @@ class PublisherController extends Controller
 
     public function store(Request $request)
     {
-        
+        // prepare empty object
+        $publisher = new Publisher;
+
+        // fill the object from request
+        $publisher->title = $request->input('title');
+
+        // save the object
+        $publisher->save();
+
+        // flash success message (provide it to the next request)
+        session()->flash('success_message', 'The publisher was successfully saved!');
+
+        // redirect (to edit form, supplying the id of the publisher to be used in the URL)
+        return redirect()->route('publishers.edit', [$publisher->id]);
     }
 
     public function edit($id)
     {
+        $publisher = Publisher::findOrFail($id);
 
+        return view('publishers.edit', compact('publisher'));
     }
 
     public function update(Request $request, $id)
     {
+        // get the object to be updated from database
+        $publisher = Publisher::findOrFail($id);
 
+        // fill the object from request
+        $publisher->title = $request->input('title');
+
+        // save the object
+        $publisher->save();
+
+        // flash success message (provide it to the next request)
+        session()->flash('success_message', 'The publisher was successfully saved!');
+
+        // redirect (to edit form, supplying the id of the publisher to be used in the URL)
+        return redirect()->route('publishers.edit', [$publisher->id]);
     }
 }

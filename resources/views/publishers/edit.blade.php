@@ -3,8 +3,25 @@
 ])
 
 @section('content')
+
+    {{-- success message --}}
+    @if (Session::has('success_message'))
     
-    <form action="{{ route('publishers.store') }}" method="post">
+        <div class="alert alert-success">
+            {{ Session::get('success_message') }}
+        </div>
+    
+    @endif
+    
+    @if ($publisher->id)
+        {{-- edit --}}
+        <form action="{{ route('publishers.update', [$publisher->id]) }}" method="post">
+            @method('PUT') 
+    @else
+        {{-- create --}}
+        <form action="{{ route('publishers.store') }}" method="post">
+    @endif
+
         @csrf
 
         <label for="">
