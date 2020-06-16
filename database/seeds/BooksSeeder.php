@@ -33,6 +33,8 @@ class BooksSeeder extends Seeder
             $new_author = new Author;
             $new_author->name = $author;
             $new_author->save();
+
+            echo "Author {$new_author->name} inserted.\n";
         }
         
         // insert all the publishers
@@ -47,6 +49,8 @@ class BooksSeeder extends Seeder
             $new_publisher = new Publisher;
             $new_publisher->title = $publisher;
             $new_publisher->save();
+
+            echo "Publisher {$new_publisher->title} inserted.\n";
         }
 
         // prepare a list of all authors that we can grab authors from by their names
@@ -71,11 +75,15 @@ class BooksSeeder extends Seeder
             // save the book (so that we know its id for the table author_book)
             $new_book->save();
 
+            echo "Book {$new_book->title} inserted.\n";
+
             // grab the id of an author from the list prepared before
             $author_id = $all_authors[ $book->author ];
 
             // attach $author_id to the book through the relationship "authors"
             $new_book->authors()->attach($author_id);
+
+            echo "Author {$book->author} attached to {$new_book->title}.\n";
         }
     }
 }
