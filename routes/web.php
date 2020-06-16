@@ -35,7 +35,7 @@ Route::get('/books/{book_id}/edit', 'BookController@edit');
 Route::post('/books/{book_id}', 'BookController@update');
 
 
-
+Route::post('/books/{book_id}/review', 'BookController@review')->name('books.review');
 
 
 

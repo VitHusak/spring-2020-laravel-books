@@ -34,3 +34,30 @@ h2 {
     color: blue;
 }
 
+.review-form {
+    margin-top: 1em;
+    border-top: 1px solid #999999;
+    
+    h2 {
+        margin: 0.5em 0 0.25em;
+    }
+
+    .form-group {
+        margin-bottom: 0.5em;
+
+        label {
+            color: #999999;
+        }
+
+        input,
+        textarea {
+            margin-top: 0.5em;
+            border: 1px solid #999999;
+            border-radius: 0.125em;
+
+            &[type="number"] {
+                width: 3em;
+            }
+        }
+    }
+}

@@ -31,4 +31,28 @@ h1 {
 h2 {
   color: blue;
 }
+
+.review-form {
+  margin-top: 1em;
+  border-top: 1px solid #999999;
+}
+.review-form h2 {
+  margin: 0.5em 0 0.25em;
+}
+.review-form .form-group {
+  margin-bottom: 0.5em;
+}
+.review-form .form-group label {
+  color: #999999;
+}
+.review-form .form-group input,
+.review-form .form-group textarea {
+  margin-top: 0.5em;
+  border: 1px solid #999999;
+  border-radius: 0.125em;
+}
+.review-form .form-group input[type=number],
+.review-form .form-group textarea[type=number] {
+  width: 3em;
+}
 /*# sourceMappingURL=app.css.map*/

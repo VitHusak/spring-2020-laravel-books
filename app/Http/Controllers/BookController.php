@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Book;
+use App\Review;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -79,5 +80,35 @@ class BookController extends Controller
         $book->save();
 
         return redirect('/books/' . $book->id);
+    }
+
+    public function review(Request $request, $book_id)
+    {
+        // validate
+        $this->validate($request, [
+            'text' => 'required|max:255',
+            'rating' => 'nullable|numeric|between:0,100'
+        ], [
+            'rating.between' => 'That number is outside of bounds.',
+            'text.required' => 'A review without a text does not make sense, love.',
+            'text.max' => 'That is too much text!'
+        ]);
+
+        // prepare empty object (because this is create)
+        $review = new Review;
+
+        // fill object with data
+        $review->book_id = $book_id;
+        $review->text = $request->input('text');
+        $review->rating = $request->input('rating');
+
+        // save the object
+        $review->save();
+
+        // flash success message
+        session()->flash('success_message', 'Review was saved. Thank you!');
+
+        // redirect
+        return redirect()->action('BookController@show', [ $book_id ]);
     }
 }
