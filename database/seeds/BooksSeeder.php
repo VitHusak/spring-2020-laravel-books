@@ -15,7 +15,7 @@ class BooksSeeder extends Seeder
     public function run()
     {
         $data = json_decode( file_get_contents( storage_path('books.json') ) );
-dd($data);
+
         // empty the tables
         \DB::statement('TRUNCATE TABLE `books`');
         \DB::statement('TRUNCATE TABLE `authors`');
@@ -63,7 +63,7 @@ dd($data);
             $new_book->price   = $book->price;
             $new_book->image   = $book->image;
             $new_book->authors = $book->author;
-            $new_book->publication_date = $book->{"publication-date"};
+            $new_book->publication_date = date('Y-m-d H:i:s', strtotime($book->{"publication-date"}));
 
             // grab the id of an publisher from the list prepared before
             $new_book->publisher_id = $all_publishers[ $book->publisher ];
@@ -73,6 +73,9 @@ dd($data);
 
             // grab the id of an author from the list prepared before
             $author_id = $all_authors[ $book->author ];
+
+            // attach $author_id to the book through the relationship "authors"
+            $new_book->authors()->attach($author_id);
         }
     }
 }
